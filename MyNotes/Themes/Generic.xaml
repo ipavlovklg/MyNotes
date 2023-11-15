@@ -1,0 +1,96 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Ivi.UI">
+    <!--reqiured [assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]-->
+    <Style TargetType="local:StickyWindow">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:StickyWindow">
+                    <local:StickyControl AllowResize="{TemplateBinding AllowResize}" AllowMove="{TemplateBinding AllowMove}" Title="{TemplateBinding Title}">
+                        <ContentPresenter />
+                    </local:StickyControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="local:StickyControl">
+        <Setter Property="HeaderHeight" Value="34"/>
+        <Setter Property="HeaderWidth" Value="10"/>
+        <Setter Property="ResizeFrameWidth" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="#80808080" />
+        <Setter Property="HeaderBackground" Value="#FFF8F7B6" />
+        <Setter Property="Background" Value="#fffdfcc1" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="AllowMove" Value="True" />
+        <Setter Property="TitleStyle">
+            <Setter.Value>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="10,0,0,0" />
+                    <Setter Property="Foreground" Value="#FF383527" />
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="FontFamily" Value="Calibri" />
+                    <Setter Property="FontStretch" Value="Normal" />
+                    <Setter Property="FontWeight" Value="Normal" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:StickyControl}">
+                    <Grid>
+                        <Grid Margin="{TemplateBinding BorderThickness}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{TemplateBinding HeaderWidth}" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="{TemplateBinding ResizeFrameWidth}" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="{TemplateBinding HeaderHeight}" />
+                                <RowDefinition />
+                                <RowDefinition Height="{TemplateBinding ResizeFrameWidth}" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.RowSpan="3" local:HitTestHelper.Type="Header" Background="{TemplateBinding HeaderBackground}" />
+                            <Grid Grid.ColumnSpan="2" Grid.Column="1" local:HitTestHelper.Type="Header" Background="{TemplateBinding HeaderBackground}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock TextTrimming="CharacterEllipsis" Text="{TemplateBinding Title}" Style="{TemplateBinding TitleStyle}" />
+                                <local:ControlBoxButton x:Name="PART_Close" Width="16" Height="16" Margin="0,0,8,0" Grid.Column="1" local:HitTestHelper.Type="Ignore" />
+                            </Grid>
+                            <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="{TemplateBinding Background}">
+                                <ContentPresenter />
+                            </Grid>
+                            <Grid Grid.Row="2" Grid.ColumnSpan="3" local:HitTestHelper.Type="ResizeFrame" Background="Transparent"/>
+                            <Grid Grid.Column="2" Grid.RowSpan="3" local:HitTestHelper.Type="ResizeFrame" Background="Transparent" />
+                        </Grid>
+                        <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="0.5" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:ControlBoxButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ControlBoxButton}">
+                    <Grid Background="Transparent">
+                        <Path x:Name="cross" Stretch="Fill" Fill="#FFC5BD93" Data="F1M9.29733,5.32L4.052,0.0746651 -4.76837E-07,4.12533 5.24533,9.37067 -4.76837E-07,14.616 4.052,18.6667 9.29733,13.4213 14.5427,18.6667 18.5933,14.616 13.3467,9.37067 18.5933,4.12533 14.5427,0.0746651 9.29733,5.32z"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Fill" TargetName="cross" Value="#FF827C5E" />
+                        </Trigger>
+                        <Trigger Property="IsMouseDirectlyOver" Value="true">
+                            <Setter Property="Fill" TargetName="cross" Value="#FF383527" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
