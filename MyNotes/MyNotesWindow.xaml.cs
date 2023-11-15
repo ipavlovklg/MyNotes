@@ -13,7 +13,14 @@ namespace MyNotesApp {
             InitializeComponent();
 
             Directory.CreateDirectory(notesFolder);
-            
+
+            File.CreateText(Path.Combine(notesFolder, "to do.txt")).Close();
+            File.CreateText(Path.Combine(notesFolder, "to see.txt")).Close();
+            File.CreateText(Path.Combine(notesFolder, "to buy.txt")).Close();
+            File.CreateText(Path.Combine(notesFolder, "to learn.txt")).Close();
+            File.CreateText(Path.Combine(notesFolder, "my paylog.txt")).Close();
+            File.CreateText(Path.Combine(notesFolder, "personal.txt")).Close();
+
             DataContext = new { Notes = GetFiles() };
         }
 
